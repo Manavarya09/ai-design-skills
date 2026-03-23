@@ -1,0 +1,61 @@
+{
+  "name": "promptdesign",
+  "version": "1.0.0",
+  "description": "Design Intelligence for AI Agents - 35 design languages",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "types/index.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.ts",
+      "import": "./src/index.ts",
+      "require": "./dist/index.js"
+    },
+    "./skills": "./skills/",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "promptdesign": "./bin/promptdesign.sh"
+  },
+  "files": [
+    "dist",
+    "skills",
+    "bin",
+    "types",
+    "src",
+    "README.md"
+  ],
+  "keywords": [
+    "ai",
+    "design",
+    "ui",
+    "design-system",
+    "claude",
+    "skills",
+    "prompt",
+    "tailwind",
+    "css",
+    "html",
+    "react"
+  ],
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/",
+    "test": "vitest",
+    "prepare": "npm run build"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  }
+}
