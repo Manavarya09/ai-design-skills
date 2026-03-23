@@ -46,9 +46,26 @@ function showLoadCommand(skill) {
   
   const skillPath = resolve(packageRoot, 'skills', 'core', `${skill}.md`);
   if (existsSync(skillPath)) {
-    console.log(gray('\n  --- Skill Preview ---\n'));
     const content = readFileSync(skillPath, 'utf-8');
-    console.log(content.slice(0, 2000) + (content.length > 2000 ? '\n  ... (truncated)' : ''));
+    const outputDir = resolve(process.cwd(), 'ai-design-skills');
+    
+    try {
+      let fs;
+      try { fs = await import('fs'); } catch {}
+      const { mkdirSync, writeFileSync, existsSync: exists } = await import('fs');
+      
+      if (!exists(outputDir)) {
+        mkdirSync(outputDir, { recursive: true });
+      }
+      
+      const skillFile = resolve(outputDir, `${skill}.md`);
+      writeFileSync(skillFile, content);
+      
+      console.log(green(`\n  Saved to: ${white(skillFile)}\n`));
+    } catch (e) {
+      console.log(gray('\n  --- Skill Preview ---\n'));
+      console.log(content.slice(0, 2000) + (content.length > 2000 ? '\n  ... (truncated)' : ''));
+    }
   }
 }
 
