@@ -159,15 +159,7 @@ function showCategories() {
   console.log();
 }
 
-function showLoadCommand(skill) {
-  console.log(green(`\n  Load Command for: ${white(skill)}\n`));
-  console.log(gray('  Claude / skills.sh:'));
-  console.log(white(`  /load ai-design-skills/core/${skill}\n`));
-  console.log(gray('  Or use npm package:'));
-  console.log(white(`  npm install ai-design-skills\n`));
-}
-
-async function main() {
+ {
   const args = process.argv.slice(2);
   
   if (args.length === 0) {
