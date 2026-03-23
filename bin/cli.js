@@ -1,15 +1,14 @@
 #!/usr/bin/env node
 
-// AI Design Skills CLI
-// Run: npx ai-design-skills
+import inquirer from 'inquirer';
 
 const categories = {
-  'Core (8)': ['minimalism', 'flat-design', 'material-design', 'swiss-international', 'enterprise-ui', 'data-first-dashboard', 'card-based-ui', 'bento-grid-layout'],
-  'Depth & Texture (6)': ['glassmorphism', 'neumorphism', 'claymorphism', 'soft-ui', 'gradient-mesh-design', 'aurora-ui'],
-  'Modes & Color (5)': ['dark-mode-minimal', 'monochrome-aesthetic', 'duotone-design', 'high-contrast-accessibility', 'pastel-ui'],
-  'Experimental (5)': ['brutalism', 'anti-design', 'retro-web', 'cyberpunk-ui', 'vaporwave-aesthetic'],
-  'Product Oriented (5)': ['saas-modern', 'fintech-ui', 'ecommerce-conversion', 'mobile-first-ui', 'super-app-ui'],
-  'Futuristic (5)': ['tech-futurism', 'ai-native-ui', 'spatial-ui', 'voice-first-ui', 'gesture-based-ui']
+  'Core': ['minimalism', 'flat-design', 'material-design', 'swiss-international', 'enterprise-ui', 'data-first-dashboard', 'card-based-ui', 'bento-grid-layout'],
+  'Depth & Texture': ['glassmorphism', 'neumorphism', 'claymorphism', 'soft-ui', 'gradient-mesh-design', 'aurora-ui'],
+  'Modes & Color': ['dark-mode-minimal', 'monochrome-aesthetic', 'duotone-design', 'high-contrast-accessibility', 'pastel-ui'],
+  'Experimental': ['brutalism', 'anti-design', 'retro-web', 'cyberpunk-ui', 'vaporwave-aesthetic'],
+  'Product Oriented': ['saas-modern', 'fintech-ui', 'ecommerce-conversion', 'mobile-first-ui', 'super-app-ui'],
+  'Futuristic': ['tech-futurism', 'ai-native-ui', 'spatial-ui', 'voice-first-ui', 'gesture-based-ui']
 };
 
 function cyan(text) { return '\x1b[36m' + text + '\x1b[0m'; }
@@ -31,12 +30,113 @@ function showBanner() {
   console.log(green('  35 Design Languages available\n'));
 }
 
-function showCategories() {
-  console.log(gray('  Available Categories:\n'));
-  Object.keys(categories).forEach((cat, i) => {
-    console.log(`  ${white(String(i + 1) + '.')} ${cat}`);
-  });
-  console.log();
+function showLoadCommand(skill) {
+  console.log(green(`\n  Load Command for: ${white(skill)}\n`));
+  console.log(gray('  Claude / skills.sh:'));
+  console.log(white(`  /load ai-design-skills/core/${skill}\n`));
+  console.log(gray('  Or use npm package:'));
+  console.log(white(`  npm install ai-design-skills\n`));
+}
+
+async function interactiveMenu() {
+  showBanner();
+  
+  const allSkills = Object.entries(categories).flatMap(([cat, skills]) => 
+    skills.map(s => ({ name: s, category: cat }))
+  );
+  
+  const choices = [
+    ...Object.keys(categories).map(cat => ({
+      name: `${cat} (${categories[cat].length})`,
+      value: `category:${cat}`
+    })),
+    new inquirer.Separator(),
+    ...allSkills.map(s => ({
+      name: s.name,
+      value: `skill:${s.name}`
+    })),
+    new inquirer.Separator(),
+    { name: 'List all 35 skills', value: 'list' },
+    { name: 'Show categories', value: 'categories' },
+    { name: 'Exit', value: 'exit' }
+  ];
+
+  const answer = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'selection',
+      message: gray('Select an option:'),
+      choices: choices,
+      loop: false,
+      pageSize: 20
+    }
+  ]);
+
+  const selection = answer.selection;
+
+  if (selection === 'exit') {
+    console.log(gray('\n  Goodbye!\n'));
+    process.exit(0);
+  }
+  else if (selection === 'list') {
+    console.clear();
+    showBanner();
+    console.log(gray('  All Design Languages:\n'));
+    Object.entries(categories).forEach(([cat, skills]) => {
+      console.log(yellow(`  ${cat}:`));
+      skills.forEach((skill, i) => {
+        console.log(`    ${white(String(i + 1) + '.')} ${skill}`);
+      });
+      console.log();
+    });
+    await inquirer.prompt([{ type: 'input', name: 'done', message: gray('\n  Press Enter to continue...') }]);
+    await interactiveMenu();
+  }
+  else if (selection === 'categories') {
+    console.clear();
+    showBanner();
+    console.log(gray('  Available Categories:\n'));
+    Object.keys(categories).forEach((cat, i) => {
+      console.log(`  ${white(String(i + 1) + '.')} ${cat} (${categories[cat].length})`);
+    });
+    console.log();
+    await inquirer.prompt([{ type: 'input', name: 'done', message: gray('\n  Press Enter to continue...') }]);
+    await interactiveMenu();
+  }
+  else if (selection.startsWith('category:')) {
+    const cat = selection.replace('category:', '');
+    console.clear();
+    showBanner();
+    console.log(gray(`  ${cat} Skills:\n`));
+    categories[cat].forEach((skill, i) => {
+      console.log(`  ${white(String(i + 1) + '.')} ${skill}`);
+    });
+    console.log();
+    
+    const skillAnswer = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'skill',
+        message: gray('Select a skill to get load command:'),
+        choices: [
+          ...categories[cat],
+          { name: 'Go back', value: 'back' }
+        ]
+      }
+    ]);
+    
+    if (skillAnswer.skill !== 'back') {
+      showLoadCommand(skillAnswer.skill);
+    }
+    await inquirer.prompt([{ type: 'input', name: 'done', message: gray('\n  Press Enter to continue...') }]);
+    await interactiveMenu();
+  }
+  else if (selection.startsWith('skill:')) {
+    const skill = selection.replace('skill:', '');
+    showLoadCommand(skill);
+    await inquirer.prompt([{ type: 'input', name: 'done', message: gray('\n  Press Enter to continue...') }]);
+    await interactiveMenu();
+  }
 }
 
 function showSkills() {
@@ -51,10 +151,18 @@ function showSkills() {
   });
 }
 
+function showCategories() {
+  console.log(gray('  Available Categories:\n'));
+  Object.keys(categories).forEach((cat, i) => {
+    console.log(`  ${white(String(i + 1) + '.')} ${cat} (${categories[cat].length})`);
+  });
+  console.log();
+}
+
 function showLoadCommand(skill) {
   console.log(green(`\n  Load Command for: ${white(skill)}\n`));
   console.log(gray('  Claude / skills.sh:'));
-  console.log(white(`  /load promptdesign/core/${skill}\n`));
+  console.log(white(`  /load ai-design-skills/core/${skill}\n`));
   console.log(gray('  Or use npm package:'));
   console.log(white(`  npm install ai-design-skills\n`));
 }
@@ -63,19 +171,7 @@ async function main() {
   const args = process.argv.slice(2);
   
   if (args.length === 0) {
-    showBanner();
-    showCategories();
-    
-    console.log(gray('  Usage:'));
-    console.log(white('    npx ai-design-skills                    Show this menu'));
-    console.log(white('    npx ai-design-skills list                List all skills'));
-    console.log(white('    npx ai-design-skills categories          Show categories'));
-    console.log(white('    npx ai-design-skills minimalism         Show load command'));
-    console.log(white('    npx ai-design-skills --help              Show help\n'));
-    
-    console.log(gray('  Quick Examples:'));
-    console.log(`    ${white('minimalism, glassmorphism, cyberpunk-ui, saas-modern, etc.')}\n`);
-    
+    await interactiveMenu();
     return;
   }
 
@@ -102,7 +198,6 @@ async function main() {
     console.log(white('    npx ai-design-skills brutalism'));
   }
   else {
-    // Check if it's a valid skill
     let found = false;
     Object.values(categories).forEach(skills => {
       if (skills.includes(command)) {
