@@ -1,96 +1,89 @@
 # PromptDesign
 
-## Description
+**Design Intelligence for AI Agents**
 
-PromptDesign is a comprehensive library of 35 structured design language specifications that enable AI agents to understand, apply, and transform UIs across any design language.
+Give AI agents the ability to understand, apply, and transform UIs across any design language with precision and consistency.
 
-## Usage
+## Install
 
 ```
 /load promptdesign
 ```
 
-This loads the main PromptDesign skill with access to all 35 design languages.
+## Usage
 
-## Commands
+Load any of 35 design languages:
 
-### Load a Design Language
-
-```
-/load promptdesign/[category]/[skill-name]
-```
-
-Examples:
 ```
 /load promptdesign/core/minimalism
 /load promptdesign/depth-texture/glassmorphism
 /load promptdesign/modes-color/dark-mode-minimal
+/load promptdesign/experimental/brutalism
+/load promptdesign/product-oriented/saas-modern
+/load promptdesign/futuristic/ai-native-ui
 ```
 
-### List Available Skills
+## Commands
 
 ```
-/promptdesign list
-```
-
-### Search Skills
-
-```
-/promptdesign search [query]
+/load promptdesign                    # Load all skills
+/load promptdesign/core/[name]        # Load from core category
+/load promptdesign/[category]/[name]  # Load specific skill
 ```
 
 ## Categories
 
-| Category | Skills |
-|----------|--------|
-| core | 8 foundational skills |
-| depth-texture | 6 visual effect skills |
-| modes-color | 5 color system skills |
-| experimental | 5 bold/avant-garde skills |
-| product-oriented | 5 product-specific skills |
-| futuristic | 5 next-gen skills |
-
-## Transform UI
-
-Apply a design language to transform any UI:
-
-```
-Input: [Your UI code or description]
-Design: [Selected design language]
-
-Output: Transformed UI following the design language rules
-```
+| Category | Count | Description |
+|----------|-------|-------------|
+| core | 8 | Foundational design skills |
+| depth-texture | 6 | Visual effects and depth |
+| modes-color | 5 | Color system skills |
+| experimental | 5 | Bold and avant-garde |
+| product-oriented | 5 | Product-specific designs |
+| futuristic | 5 | Next-gen interfaces |
 
 ## Example
 
 ```
 /load promptdesign/core/minimalism
 
-Transform this HTML with minimalism:
-<div style="background: blue; padding: 50px;">
-  <h1 style="font-size: 48px; color: white;">Hello</h1>
-  <p style="font-size: 24px;">World</p>
-  <button style="background: green; padding: 20px;">Click</button>
-</div>
+Transform this UI following minimalism design language:
+[Your HTML or description]
 ```
 
-## Master Prompt
+## Skills
 
-When using PromptDesign, the AI follows these instructions:
-
-```
-You are a Design Language Engine.
-
-Follow the [DESIGN_LANGUAGE] rules strictly:
-- Layout: Grid system, spacing, structure
-- Typography: Font family, sizes, hierarchy
-- Colors: Use defined palette
-- Components: Follow component specs
-
-Enforce all constraints. Reject invalid patterns.
-Maintain accessibility (WCAG AA minimum).
-```
-
-## License
-
-MIT
+- minimalism
+- flat-design
+- material-design
+- swiss-international
+- enterprise-ui
+- data-first-dashboard
+- card-based-ui
+- bento-grid-layout
+- glassmorphism
+- neumorphism
+- claymorphism
+- soft-ui
+- gradient-mesh-design
+- aurora-ui
+- dark-mode-minimal
+- monochrome-aesthetic
+- duotone-design
+- high-contrast-accessibility
+- pastel-ui
+- brutalism
+- anti-design
+- retro-web
+- cyberpunk-ui
+- vaporwave-aesthetic
+- saas-modern
+- fintech-ui
+- ecommerce-conversion
+- mobile-first-ui
+- super-app-ui
+- tech-futurism
+- ai-native-ui
+- spatial-ui
+- voice-first-ui
+- gesture-based-ui
