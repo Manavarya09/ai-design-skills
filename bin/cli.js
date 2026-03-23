@@ -159,7 +159,7 @@ function showCategories() {
   console.log();
 }
 
- {
+async function main() {
   const args = process.argv.slice(2);
   
   if (args.length === 0) {
