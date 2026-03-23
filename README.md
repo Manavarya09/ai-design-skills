@@ -16,13 +16,25 @@ AI generates messy layouts, inconsistent spacing, and random colors. AI Design S
 npm install ai-design-skills
 ```
 
-**Claude / skills.sh:**
+### Use the CLI
+
+```bash
+npx ai-design-skills                 # Show interactive menu
+npx ai-design-skills list             # List all 35 design languages
+npx ai-design-skills minimalism       # Get load command for a skill
+npx ai-design-skills glassmorphism    # Get load command
+npx ai-design-skills --help           # Show help
+```
+
+### Claude / skills.sh
+
 ```
 /load promptdesign/core/minimalism
 /load promptdesign/depth-texture/glassmorphism
 ```
 
-**JavaScript:**
+### JavaScript
+
 ```javascript
 import { getDesignLanguage } from 'ai-design-skills';
 const design = await getDesignLanguage('minimalism');
@@ -46,6 +58,35 @@ Structured design language specifications that AI follows. Each skill includes:
 - Components (buttons, forms, cards)
 - Do's and Don'ts
 - Machine-readable JSON
+
+---
+
+## CLI Output
+
+When you run `npx ai-design-skills`:
+
+```
+╔══════════════════════════════════════════════════════════════╗
+║  AI Design Skills                                ║
+║  Give AI a Sense of Design                        ║
+╚══════════════════════════════════════════════════════════════╝
+
+  35 Design Languages available
+
+  Available Categories:
+
+  1. Core (8)
+  2. Depth & Texture (6)
+  3. Modes & Color (5)
+  4. Experimental (5)
+  5. Product Oriented (5)
+  6. Futuristic (5)
+
+  Usage:
+    npx ai-design-skills                    Show this menu
+    npx ai-design-skills list                List all skills
+    npx ai-design-skills minimalism          Show load command
+```
 
 ---
 
@@ -111,7 +152,7 @@ const result = await transformUI({
 
 ## Compatible Platforms
 
-Claude (skills.sh) / OpenAI / GPT / Cursor / VS Code / Custom APIs
+Claude (skills.sh) / OpenAI / GPT / Cursor / VS Code / Custom APIs / npm
 
 ---
 
@@ -119,7 +160,7 @@ Claude (skills.sh) / OpenAI / GPT / Cursor / VS Code / Custom APIs
 
 - **GitHub:** https://github.com/Manavarya09/ai-design-skills
 - **npm:** https://www.npmjs.com/package/ai-design-skills
-- **Landing Page:** https://Manavarya09.github.io/ai-design-skills
+- **Landing Page:** https://manavarya09.github.io/ai-design-skills
 
 ---
 
