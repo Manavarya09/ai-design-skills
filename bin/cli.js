@@ -128,14 +128,10 @@ async function interactiveMenu() {
     if (skillAnswer.skill !== 'back') {
       showLoadCommand(skillAnswer.skill);
     }
-    await inquirer.prompt([{ type: 'input', name: 'done', message: gray('\n  Press Enter to continue...') }]);
-    await interactiveMenu();
   }
   else if (selection.startsWith('skill:')) {
     const skill = selection.replace('skill:', '');
     showLoadCommand(skill);
-    await inquirer.prompt([{ type: 'input', name: 'done', message: gray('\n  Press Enter to continue...') }]);
-    await interactiveMenu();
   }
 }
 
