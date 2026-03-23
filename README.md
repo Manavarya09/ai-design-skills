@@ -2,6 +2,13 @@
 
 ### Give AI a Sense of Design
 
+[![npm version](https://img.shields.io/npm/v/ai-design-skills.svg)](https://www.npmjs.com/package/ai-design-skills)
+[![npm downloads](https://img.shields.io/npm/dm/ai-design-skills.svg)](https://www.npmjs.com/package/ai-design-skills)
+[![npm license](https://img.shields.io/npm/l/ai-design-skills.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/Manavarya09/ai-design-skills.svg)](https://github.com/Manavarya09/ai-design-skills)
+[![GitHub issues](https://img.shields.io/github/issues/Manavarya09/ai-design-skills.svg)](https://github.com/Manavarya09/ai-design-skills/issues)
+[![GitHub last commit](https://img.shields.io/github/last-commit/Manavarya09/ai-design-skills.svg)](https://github.com/Manavarya09/ai-design-skills)
+
 ---
 
 **35 structured design languages. One command. Consistent UIs.**
@@ -16,28 +23,34 @@ AI generates messy layouts, inconsistent spacing, and random colors. AI Design S
 npm install ai-design-skills
 ```
 
-### Use the CLI
+### CLI Commands
 
 ```bash
-npx ai-design-skills                 # Show interactive menu
+npx ai-design-skills --help           # Show help
+npx ai-design-skills                  # Show interactive menu
 npx ai-design-skills list             # List all 35 design languages
 npx ai-design-skills minimalism       # Get load command for a skill
-npx ai-design-skills glassmorphism    # Get load command
-npx ai-design-skills --help           # Show help
+npx ai-design-skills glassmorphism    # Get load command for glassmorphism
+npx ai-design-skills brutalism        # Get load command for brutalism
+npx ai-design-skills material-design  # Get load command for material
 ```
 
 ### Claude / skills.sh
 
 ```
-/load promptdesign/core/minimalism
-/load promptdesign/depth-texture/glassmorphism
+/load ai-design-skills/core/minimalism
+/load ai-design-skills/depth-texture/glassmorphism
+/load ai-design-skills/bold/brutalism
 ```
 
-### JavaScript
+### JavaScript / Node.js
 
 ```javascript
 import { getDesignLanguage } from 'ai-design-skills';
+
 const design = await getDesignLanguage('minimalism');
+console.log(design);
+// { name: 'minimalism', principles: [...], colors: {...}, ... }
 ```
 
 ---
@@ -66,10 +79,10 @@ Structured design language specifications that AI follows. Each skill includes:
 When you run `npx ai-design-skills`:
 
 ```
-╔══════════════════════════════════════════════════════════════╗
-║  AI Design Skills                                ║
-║  Give AI a Sense of Design                        ║
-╚══════════════════════════════════════════════════════════════╝
+==========================================================
+   AI DESIGN SKILLS
+   Give AI a Sense of Design
+==========================================================
 
   35 Design Languages available
 
@@ -86,6 +99,7 @@ When you run `npx ai-design-skills`:
     npx ai-design-skills                    Show this menu
     npx ai-design-skills list                List all skills
     npx ai-design-skills minimalism          Show load command
+    npx ai-design-skills --help              Show help
 ```
 
 ---
@@ -152,18 +166,24 @@ const result = await transformUI({
 
 ## Compatible Platforms
 
-Claude (skills.sh) / OpenAI / GPT / Cursor / VS Code / Custom APIs / npm
+[![Claude](https://img.shields.io/badge/Claude-7B4CDB?style=flat&logo=anthropic)](https://www.anthropic.com/claude)
+[![OpenAI](https://img.shields.io/badge/OpenAI-10A37F?style=flat&logo=openai)](https://openai.com)
+[![Cursor](https://img.shields.io/badge/Cursor-FF6B35?style=flat&logo=cursor)](https://cursor.sh)
+[![VS Code](https://img.shields.io/badge/VS%20Code-007ACC?style=flat&logo=visual-studio-code)](https://code.visualstudio.com)
+[![npm](https://img.shields.io/badge/npm-CB3837?style=flat&logo=npm)](https://www.npmjs.com)
 
 ---
 
 ## Links
 
-- **GitHub:** https://github.com/Manavarya09/ai-design-skills
-- **npm:** https://www.npmjs.com/package/ai-design-skills
-- **Landing Page:** https://manavarya09.github.io/ai-design-skills
+[![GitHub](https://img.shields.io/badge/GitHub-Manavarya09/ai-design-skills-181717?style=flat&logo=github)](https://github.com/Manavarya09/ai-design-skills)
+[![npm](https://img.shields.io/badge/npm-ai--design--skills-CB3837?style=flat&logo=npm)](https://www.npmjs.com/package/ai-design-skills)
+[![Landing Page](https://img.shields.io/badge/Landing%20Page-manavarya09.github.io/ai--design--skills-333333?style=flat)](https://manavarya09.github.io/ai-design-skills)
 
 ---
 
 ## License
+
+[![npm license](https://img.shields.io/npm/l/ai-design-skills.svg)](LICENSE)
 
 MIT
