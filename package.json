@@ -1,6 +1,6 @@
 {
   "name": "ai-design-skills",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Design Intelligence for AI Agents - 35 structured design languages for UI transformation",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
